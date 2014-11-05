@@ -1,0 +1,58 @@
+@mixin vertical-gradient($fromColor, $toColor) {
+	background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); 
+	background-image: -webkit-linear-gradient(top, $fromColor, $toColor); 
+	background-image:    -moz-linear-gradient(top, $fromColor, $toColor); 
+	background-image:     -ms-linear-gradient(top, $fromColor, $toColor); 
+	background-image:      -o-linear-gradient(top, $fromColor, $toColor); 
+	background-image:         linear-gradient(to bottom, $fromColor, $toColor);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+ 
+@mixin horizontal-gradient($fromColor, $toColor) {
+      background-image: -webkit-gradient(linear, left top, right top, from($fromColor), to($toColor)); 
+      background-image: -webkit-linear-gradient(left, $fromColor, $toColor); 
+      background-image:    -moz-linear-gradient(left, $fromColor, $toColor); 
+      background-image:     -ms-linear-gradient(left, $fromColor, $toColor); 
+      background-image:      -o-linear-gradient(left, $fromColor, $toColor);
+      background-image:         linear-gradient(to right, $fromColor, $toColor);
+      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+
+//    @include transition(all, 0.2s, ease-in-out);
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+// center vertically and/or horizontally an absolute positioned element
+@mixin center($xy:xy) {
+  @if $xy == xy {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    @include transform(translateX(-50%) translateY(-50%));
+  }
+  @else if $xy == x {
+    left: 50%;
+    right: auto;
+    @include transform(translateX(-50%));
+  }
+  @else if $xy == y {
+    top: 50%;
+    bottom: auto;
+    @include transform(translateY(-50%));
+  }
+}

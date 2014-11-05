@@ -1,0 +1,16 @@
+﻿{
+    "name": "Boilerplate-Web",
+    "description": "Node setup for building of js and css assets",
+    "version": "1.0.0",
+    "repository": "",
+    "readme": "",
+    "devDependencies": {
+        "grunt": "~0.4.4",
+        "grunt-contrib-concat": "~0.4.0",
+        "grunt-contrib-uglify": "~0.4.0",
+        "grunt-contrib-watch": "~0.6.1",
+        "grunt-contrib-cssmin": "~0.10.0",
+        "grunt-libsass": "~0.2.0",
+        "grunt-banner": "^0.2.3"
+    }
+}
