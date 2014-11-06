@@ -1,4 +1,3 @@
-/* Boilerplate-Web - v1.0.0 - 2014-11-05 14:05 */
 /*
  * Foundation Responsive Library
  * http://foundation.zurb.com
@@ -1773,36 +1772,57 @@ var UI = {
             return viewport;
         }
     },
-    MobileNavigation: {
+    Mobile: {
         init: function () {
             if(UI.Device == "small") {
-                UI.MobileNavigation.on();
+                UI.Mobile.on();
             }
         },
         on: function () {
-            $('.top-navigation').clone().removeClass('top-navigation').addClass('cloned-top-navigation').appendTo('#site-menu');
-            $('main').append('<div id="dimm"></div>');
-
             // open and close primary navigation
-            $('#primary-nav-trigger, #dimm').on('click', function(){
-                $('.menu-icon').toggleClass('is-clicked'); 
-                $('#toggle-menu span').toggleClass('is-clicked');
-                $('#dimm').toggleClass('is-visible'); 
-                $('#site-wrapper').toggleClass('show-nav');
-                event.preventDefault();
-            });
-            $('#search-trigger').on('click', function(){
-                $('#search-field').toggleClass('is-clicked'); 
-                $('#search-field input').focus();
-                event.preventDefault();
+            $('.nav-trigger').on('click', function(e) {
+                e.preventDefault();
+                if( $('main').hasClass('nav-is-visible') ) {
+                    UI.Mobile.closeNav();
+                } else { 
+                    $(this).addClass('nav-is-visible');
+                    $('main').addClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                        $('body').addClass('overflow-hidden');
+                    });
+                    UI.Mobile.toggleSearch('close');
+                }
+            }); 
+            // open and close search
+            $('.search-trigger').on('click', function(e){
+                UI.Mobile.toggleSearch();
+                UI.Mobile.closeNav();
+                e.preventDefault();
             });
         },
         off: function () {
-            if($('.cloned-top-navigation').length) {
-                $('.cloned-top-navigation').remove();
+            $('.nav-trigger').off();
+            $('.search-trigger').off();
+        },
+
+        closeNav: function () {
+            $('.nav-trigger').removeClass('nav-is-visible');
+           
+            $('main').removeClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                $('body').removeClass('overflow-hidden');
+            });
+        }, 
+        toggleSearch: function (type) {
+            if(type=="close") {
+                //close serach 
+                $('.search').removeClass('is-visible');
+                $('.search-trigger').removeClass('search-is-visible');
+            } else {
+                //toggle search visibility
+                $('.search').toggleClass('is-visible');
+                $('.search-trigger').toggleClass('search-is-visible');
+                // Focus
+                $('.cd-search').find('input[type="search"]').focus();
             }
-            $('#primary-nav-trigger').off();
-            $('#search-trigger').off();
         }
     },
 
@@ -1845,15 +1865,11 @@ var UI = {
 
                     //Set cookie if msg has been visible for 3 sec
                     setTimeout(function () { UI.CookieInfo.setCookie(); }, 3000);
-
                 }
             
-                //get the page id
-                var pageId = $('meta[name=pageId]').attr('content');
-
                 $.ajax({
                     type: 'GET',
-                    url: '/umbraco/api/cookieinfoapi/GetCookieInfo?id=' + pageId,
+                    url: '/assets/json/getCookieInfo.txt',
                     dataType: 'json',
                     success: startCookieInfo,
                     error: function () { console.log("Fejl - Cookieinformation"); }
@@ -1875,8 +1891,9 @@ var UI = {
 $(function () {
     UI.Foundation.init();
     UI.Viewport.init();
-    UI.MobileNavigation.init();
-    UI.SlickSlideshow.init();
+    UI.Mobile.init();
+    //UI.SlickSlideshow.init(); 
+    //UI.CookieInfo.init();
 
     // Throttled resize function
     $(window).on('resize', Foundation.utils.throttle(function(e){
@@ -1884,9 +1901,9 @@ $(function () {
 
         if(viewport != UI.Device) {
             if(viewport == "small") {
-                UI.MobileNavigation.on();
+                UI.Mobile.on();
             } else {
-                UI.MobileNavigation.off();
+                UI.Mobile.off();
             }
         }
 

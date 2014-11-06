@@ -1,0 +1,7 @@
+{  
+   "CookieHeading":"This is a cookies message",
+   "CookieText":"There is a lot of cookies on this site",
+   "CookieButtonText":"Yes, I accept",
+   "CookieReadMoreText":"Read more",
+   "CookieReadMoreLink":"http://www.cookieinfo.com"
+}
