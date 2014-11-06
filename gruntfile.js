@@ -47,8 +47,7 @@
             }
         },
         concat: {
-            sglBuild: {
-                // order of files seems to be important here
+            build: {
                 src: [
                     '<%= sourceJsDir %>/foundation/foundation.js',
                     '<%= sourceJsDir %>/foundation/foundation.interchange.js',
@@ -67,7 +66,7 @@
                 mangle: true,
                 sourceMap: true
             },
-            albankApp: {
+            app: {
                 src: '<%= webJsDir %>/app.js',
                 dest: '<%= webJsDir %>/app.min.js'
             }
