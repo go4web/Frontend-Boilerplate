@@ -1,0 +1,265 @@
+nav ul {
+	list-style: none;
+	margin: 0;
+}
+
+
+@media #{$small-only} {
+
+	body {
+		overflow-x: hidden; 
+	}
+
+	#site-wrapper {
+	  position: relative;
+	  width: 100%;
+	}
+	#site-canvas {
+	  width: 100%;
+	  height: 100%;
+	  position: relative;
+
+	  @include transform(translateX(0));
+	  @include transform(translate3d(0, 0, 0));
+	  @include transition(all 300ms ease-out);
+
+	  -webkit-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	}
+	.nav-is-visible #site-canvas {
+		@include transform(translateX(-265px));
+		@include transform(translate3d(-265px, 0, 0));
+	}
+
+	#site-menu {
+	  width: 265px;
+	  height: 100vh;
+	  position: absolute;
+	  z-index: 15;
+	  top: 0;
+	  right: -265px;
+	  background: charcoal;
+	  border-right: 1px solid $charcoal;
+	  padding: rem-calc(15);
+	}
+
+	#dimm {
+		display: none;
+		opacity: 0;
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100vh;
+	    z-index: 10;
+	    @include transition(opacity .2s ease);
+	    .rgba & {
+	        background-color: rgba(0,0,0,0.7);
+	    }
+	    .no-rgba & {
+	        background-color: #333;
+	    }
+
+	    .nav-is-visible & {
+	    	display: block;
+	    	opacity: 1;
+	    }
+	}
+}
+
+
+.main-navigation {
+	@include clearfix();
+
+	@media #{$small-only} {
+		nav {
+			> ul {
+				font-size: rem-calc(16);
+
+				// Level 1
+				> li {
+					border-bottom: 1px solid $charcoal;
+				
+					&:first-child a {border-top: none;}
+					&.active > a {
+						color: darken($charcoal, 10%);
+					}
+					a {
+						border-top: 1px solid $vapor;
+						display: block;
+						color: $charcoal;
+						padding: rem-calc(5) 0;
+					}					
+
+					// Level 2
+					ul {
+						padding-bottom: rem-calc(10);
+						margin-left: rem-calc(15);
+
+						a {
+							border: none;
+						}
+						li {
+							&.active a {
+								color: darken($charcoal, 10%);
+							}							
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@media #{$medium-up} {
+		&.has-subnavigation {
+			margin-bottom: 33px; // Height of subnavigation
+		}
+
+		border-bottom: 1px solid $primary-color;
+		position: relative;
+
+		nav {
+			@include grid-row();
+			padding-left: $column-gutter/2;
+			padding-right: $column-gutter/2;
+		
+			> ul {
+				padding-top: 2px;
+				padding-bottom: 2px;
+
+				@include clearfix();
+			
+				> li {
+					display: inline-block;
+					float: left;
+					border-left: 1px solid darken($charcoal, 1%); 
+					font-size: rem-calc(16);
+
+					> a {
+						border-left: 1px solid $vapor;
+						display: inline-block;
+						float: left;
+						color: $charcoal;
+						padding: rem-calc(5) rem-calc(10);
+
+						@include transition(color 0.2s ease-in-out);
+					}
+
+					&:first-child {
+						border-left: none;
+						> a {
+							border-left: none; 
+							margin-left: rem-calc(-10);
+						}
+					}
+
+					&.active > a {
+						position: relative;
+
+					 	&:before, &:after {
+							bottom: -3px;	// To align with padding on ul
+							left: 50%;
+							border: solid transparent;
+							content: " ";
+							height: 0;
+							width: 0;
+							position: absolute;
+							pointer-events: none;
+						}
+
+						// Stroke 
+						&:before {
+							border-color: transparent;
+							border-bottom-color: #ededed;
+							border-width: 6px;
+							margin-left: -6px;
+						}
+
+						// Fill
+						&:after {
+							border-color: transparent;
+							border-bottom-color: $white;
+							border-width: 5px;
+							margin-left: -5px;
+						}
+					}
+				}
+			}
+
+		.has-submenu {
+			display: block;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: 100%;
+			margin-top: 2px;
+			border-bottom: 1px solid $charcoal;
+
+			background: #fafafa;
+
+			@include clearfix();
+		}
+
+		// Subnavigation 
+			ul ul {
+				position: relative;
+
+				@include grid-row();
+				padding-left: $column-gutter/2;
+				padding-right: $column-gutter/2;
+
+				li {
+					display: inline-block;
+					float: left;
+					font-size: rem-calc(13);
+
+					margin-right: rem-calc(10);
+
+					a {
+						display: inline-block;
+						float: left;
+						color: $charcoal;
+						padding: rem-calc(5) 0;
+
+						@include transition(color 0.2s ease-in-out);
+
+						&:hover {
+							color: darken($charcoal, 10%);
+						}
+					}
+					&.active > a {
+						color: darken($charcoal, 10%);
+						position: relative;
+
+					    &:before, &:after {
+							bottom: -1px;		// To align with padding on ul
+							left: 50%;
+							border: solid transparent;
+							content: " ";
+							height: 0;
+							width: 0;
+							position: absolute;
+							pointer-events: none;
+						}
+
+						// Stroke 
+						&:before {
+							border-color: transparent;
+							border-bottom-color: #ededed;
+							border-width: 6px;
+							margin-left: -6px;
+						}
+
+						// Fill
+						&:after {
+							border-color: transparent;
+							border-bottom-color: $white;
+							border-width: 5px;
+							margin-left: -5px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
