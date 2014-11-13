@@ -24,7 +24,7 @@ ul.list-items {
       margin-top: -1px;
       display: inline-block;
       height: 2px;
-      width: 10px;
+      width: 8px;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden; 
       left: 0;
@@ -36,7 +36,7 @@ ul.list-items {
       //@include transform-origin(1px 50%);
 
       // Arrow to the right
-      @include transform-origin(9px 50%);
+      @include transform-origin(7px 50%);
     }
 
     &::before {
