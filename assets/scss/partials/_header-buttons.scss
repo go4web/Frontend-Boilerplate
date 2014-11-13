@@ -16,13 +16,16 @@
 	height: 44px;
 	overflow: hidden;
 	white-space: nowrap;
-	// hide text
 	text-indent: 100%;
 	color: transparent;
 	z-index: 20;
 
 	&:hover, &:active {
 		color: transparent;
+	}
+
+	@media #{$medium-up} {
+		display: none;
 	}
 }
 
