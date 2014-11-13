@@ -34,7 +34,7 @@
 		// search icon
 		content: '';
 		position: absolute;
-		@include transition(opacity, .3s, ease);
+		@include transition(opacity .3s ease);
 		/* Force Hardware Acceleration in WebKit */
 		@include transform(translateZ(0));
 		-webkit-backface-visibility: hidden;
@@ -87,8 +87,8 @@
 		@include transform(translateZ(0));
 		-webkit-backface-visibility: hidden;
 		backface-visibility: hidden;
-		@include transition(opacity, .3s, ease);
-		@include transition(transform, .3s, ease);
+		@include transition(opacity .3s ease, transform .3s ease);
+
 	}
 
 	span::before {
@@ -137,7 +137,7 @@
 		top: 50%;
 		right: 10px;
 		margin-top: -2px;
-		@include transition(background, .3s, ease);
+		@include transition(background .3s ease);
 	}
 
 	span::before, span::after {
@@ -149,7 +149,7 @@
 		-webkit-backface-visibility: hidden;
 		backface-visibility: hidden;
 		@include transform-origin(0% 50%);
-		@include transition(transform, .3s, ease);
+		@include transition(transform .3s ease);
 	}
 
 	span::before {

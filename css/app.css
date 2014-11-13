@@ -1,3 +1,4 @@
+/* Boilerplate-Web - v1.0.0 - 2014-11-13 10:33 */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -3771,16 +3772,11 @@ ul.list-items {
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transition: opacity 0.3s ease;
-  -moz-transition: opacity 0.3s ease;
-  -ms-transition: opacity 0.3s ease;
-  -o-transition: opacity 0.3s ease;
-  transition: opacity 0.3s ease;
-  -webkit-transition: transform 0.3s ease;
-  -moz-transition: transform 0.3s ease;
-  -ms-transition: transform 0.3s ease;
-  -o-transition: transform 0.3s ease;
-  transition: transform 0.3s ease; }
+  -webkit-transition: opacity 0.3s ease, transform 0.3s ease;
+  -moz-transition: opacity 0.3s ease, transform 0.3s ease;
+  -ms-transition: opacity 0.3s ease, transform 0.3s ease;
+  -o-transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease; }
 .search-trigger span::before {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
