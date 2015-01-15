@@ -31,51 +31,10 @@ var UI = {
             }
         },
         on: function () {
-            $('main').append('<div id="dimm"></div>');
-            // open and close primary navigation
-            $('.nav-trigger, #dimm').on('click', function(e) {
-                e.preventDefault();
-                if( $('#site-wrapper').hasClass('nav-is-visible') ) {
-                    UI.Mobile.closeNav();
-                } else { 
-                    $(this).addClass('nav-is-visible');
-                    $('#site-wrapper').addClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-                        $('body').addClass('overflow-hidden');
-                    });
-                    UI.Mobile.toggleSearch('close');
-                }
-            }); 
-            // open and close search
-            $('.search-trigger').on('click', function(e){
-                e.preventDefault();
-                UI.Mobile.toggleSearch();
-                UI.Mobile.closeNav();
-            });
+          
         },
         off: function () {
-            $('.nav-trigger').off();
-            $('.search-trigger').off();
-            $('#dimm').remove();
-        },
 
-        closeNav: function () {
-            $('.nav-trigger').removeClass('nav-is-visible');
-            $('#site-wrapper').removeClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-                $('body').removeClass('overflow-hidden');
-            });
-        }, 
-        toggleSearch: function (type) {
-            if(type=="close") {
-                //close serach 
-                $('.search').removeClass('is-visible');
-                $('.search-trigger').removeClass('search-is-visible');
-            } else {
-                //toggle search visibility
-                $('.search').toggleClass('is-visible');
-                $('.search-trigger').toggleClass('search-is-visible');
-                // Focus
-                $('.cd-search').find('input[type="search"]').focus();
-            }
         }
     },
 

@@ -1,9 +1,9 @@
 ﻿module.exports = function(grunt) {
     grunt.initConfig({
         sourceJsDir: 'assets/scripts',
-        webJsDir: 'scripts',
+        webJsDir: 'public/scripts',
         sourceCssDir: 'assets/scss',
-        webCssDir: 'css',
+        webCssDir: 'public/css',
         pkg: grunt.file.readJSON('package.json'),
 
         watch: {

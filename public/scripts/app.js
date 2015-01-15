@@ -1,4 +1,4 @@
-/* Boilerplate-Web - v1.0.0 - 2014-11-13 11:40 */
+/* Boilerplate-Web - v1.0.0 - 2015-01-15 10:42 */
 /*
  * Foundation Responsive Library
  * http://foundation.zurb.com
@@ -279,7 +279,7 @@
   window.Foundation = {
     name : 'Foundation',
 
-    version : '5.4.6',
+    version : '5.4.7',
 
     media_queries : {
       small : S('.foundation-mq-small').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
@@ -631,7 +631,7 @@
   Foundation.libs.interchange = {
     name : 'interchange',
 
-    version : '5.4.6',
+    version : '5.4.7',
 
     cache : {},
 
@@ -976,7 +976,7 @@
   Foundation.libs.accordion = {
     name : 'accordion',
 
-    version : '5.4.6',
+    version : '5.4.7',
 
     settings : {
       content_class: 'content',
@@ -1043,7 +1043,7 @@
   Foundation.libs.abide = {
     name : 'abide',
 
-    version : '5.4.6',
+    version : '5.4.7',
 
     settings : {
       live_validate : true,
@@ -1358,7 +1358,7 @@
   Foundation.libs.tooltip = {
     name : 'tooltip',
 
-    version : '5.4.6',
+    version : '5.4.7',
 
     settings : {
       additional_inheritable_classes : [],
@@ -1778,51 +1778,10 @@ var UI = {
             }
         },
         on: function () {
-            $('main').append('<div id="dimm"></div>');
-            // open and close primary navigation
-            $('.nav-trigger, #dimm').on('click', function(e) {
-                e.preventDefault();
-                if( $('#site-wrapper').hasClass('nav-is-visible') ) {
-                    UI.Mobile.closeNav();
-                } else { 
-                    $(this).addClass('nav-is-visible');
-                    $('#site-wrapper').addClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-                        $('body').addClass('overflow-hidden');
-                    });
-                    UI.Mobile.toggleSearch('close');
-                }
-            }); 
-            // open and close search
-            $('.search-trigger').on('click', function(e){
-                e.preventDefault();
-                UI.Mobile.toggleSearch();
-                UI.Mobile.closeNav();
-            });
+          
         },
         off: function () {
-            $('.nav-trigger').off();
-            $('.search-trigger').off();
-            $('#dimm').remove();
-        },
 
-        closeNav: function () {
-            $('.nav-trigger').removeClass('nav-is-visible');
-            $('#site-wrapper').removeClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-                $('body').removeClass('overflow-hidden');
-            });
-        }, 
-        toggleSearch: function (type) {
-            if(type=="close") {
-                //close serach 
-                $('.search').removeClass('is-visible');
-                $('.search-trigger').removeClass('search-is-visible');
-            } else {
-                //toggle search visibility
-                $('.search').toggleClass('is-visible');
-                $('.search-trigger').toggleClass('search-is-visible');
-                // Focus
-                $('.cd-search').find('input[type="search"]').focus();
-            }
         }
     },
 
