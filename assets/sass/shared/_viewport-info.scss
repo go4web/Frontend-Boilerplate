@@ -1,0 +1,44 @@
+// --- Viewport label ---
+// --- Show current viewport; for development purposes --- 
+
+.viewport-label {
+	font-family: 'Arial', sans-serif;
+	position: fixed;
+	width: 70px;
+	height: 20px;
+    line-height: 19px;
+    text-align: center;
+	bottom: 30px;
+	right: 60px;
+	z-index: 100;
+	font-size: 11px;
+	background-color: #fff;
+	color: #aaa;
+    text-transform: uppercase;
+	border: 1px solid #aaa;
+	border-right: 0;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+
+	&:after {
+		position: absolute;
+		display: block;
+        font-weight: bold;
+        width: 30px;
+	    height: 20px;
+	    line-height: 20px;
+        top: -1px;
+		left: 69px;
+		background-color: #aaa;
+		text-align: center;
+        color: #fff;
+        border-bottom-right-radius: 4px;
+        border-top-right-radius: 4px;
+        
+		@media #{$small-only} 	{ 	content: "S"; 	}
+		@media #{$medium-only} 	{ 	content: "M"; 	}
+		@media #{$large-only} 	{ 	content: "L"; 	}
+		@media #{$xlarge-only} 	{	content: "XL";	}
+		@media #{$xxlarge-up} 	{	content: "XXL";	}
+	}
+}

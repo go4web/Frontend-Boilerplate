@@ -1,0 +1,15 @@
+// Normalize
+@import "core/normalize";
+
+// Foundation
+@import "core/settings";
+@import "core/foundation.scss";
+
+// Custom mixins
+@import "shared/mixins";
+
+// Page components
+@import "shared/icons";
+
+// Viewport info 
+@import "shared/viewport-info";

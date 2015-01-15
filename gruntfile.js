@@ -2,7 +2,7 @@
     grunt.initConfig({
         sourceJsDir: 'assets/scripts',
         webJsDir: 'public/scripts',
-        sourceCssDir: 'assets/scss',
+        sourceCssDir: 'assets/sass',
         webCssDir: 'public/css',
         pkg: grunt.file.readJSON('package.json'),
 
