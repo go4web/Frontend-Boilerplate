@@ -30,9 +30,10 @@ $tabbar-header-margin: 0 !default;
 $off-canvas-width: rem-calc(250) !default;
 $off-canvas-bg: $oil !default;
 $off-canvas-bg-hover: scale-color($tabbar-bg, $lightness: -30%) !default;
+$off-canvas-bg-active: scale-color($tabbar-bg, $lightness: -30%) !default;
 
 // Off Canvas Menu List Variables
-$off-canvas-label-padding: 0.3rem rem-calc(15) !default;
+$off-canvas-label-padding: .3rem rem-calc(15) !default;
 $off-canvas-label-color: $aluminum !default;
 $off-canvas-label-text-transform: uppercase !default;
 $off-canvas-label-font-size: rem-calc(12) !default;
@@ -42,7 +43,7 @@ $off-canvas-label-border-top: 1px solid scale-color($off-canvas-label-bg, $light
 $off-canvas-label-border-bottom: none !default;
 $off-canvas-label-margin:0 !default;
 $off-canvas-link-padding: rem-calc(10, 15) !default;
-$off-canvas-link-color: rgba($white, 0.7) !default;
+$off-canvas-link-color: rgba($white, .7) !default;
 $off-canvas-link-border-bottom: 1px solid scale-color($off-canvas-bg, $lightness: -25%) !default;
 $off-canvas-back-bg: #444 !default;
 $off-canvas-back-border-top: $off-canvas-label-border-top !default;
@@ -69,9 +70,9 @@ $tabbar-hamburger-icon-gap: 6px !default;
 // Off Canvas Back-Link Overlay
 $off-canvas-overlay-transition: background 300ms ease !default;
 $off-canvas-overlay-cursor: pointer !default;
-$off-canvas-overlay-box-shadow: -4px 0 4px rgba($black, 0.5), 4px 0 4px rgba($black, 0.5) !default;
-$off-canvas-overlay-background: rgba($white, 0.2) !default;
-$off-canvas-overlay-background-hover: rgba($white, 0.05) !default;
+$off-canvas-overlay-box-shadow: -4px 0 4px rgba($black, .5), 4px 0 4px rgba($black, .5) !default;
+$off-canvas-overlay-background: rgba($white, .2) !default;
+$off-canvas-overlay-background-hover: rgba($white, .05) !default;
 
 // Transition Variables
 $menu-slide: "transform 500ms ease" !default;
@@ -90,13 +91,13 @@ $menu-slide: "transform 500ms ease" !default;
   width: 100%;
 }
 
-@mixin translate3d($tx,$ty,$tz) {
-      -ms-transform: translate($tx,$ty);
-  -webkit-transform: translate3d($tx,$ty,$tz);
-     -moz-transform: translate3d($tx,$ty,$tz);
-      -ms-transform: translate3d($tx,$ty,$tz);
-       -o-transform: translate3d($tx,$ty,$tz);
-          transform: translate3d($tx,$ty,$tz)
+@mixin translate3d($tx, $ty, $tz) {
+  -webkit-transform: translate3d($tx, $ty, $tz);
+     -moz-transform: translate3d($tx, $ty, $tz);
+      -ms-transform: translate($tx, $ty);
+      -ms-transform: translate3d($tx, $ty, $tz);
+       -o-transform: translate3d($tx, $ty, $tz);
+          transform: translate3d($tx, $ty, $tz)
 }
 
 // basic styles for off-canvas menu container
@@ -117,11 +118,11 @@ $menu-slide: "transform 500ms ease" !default;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   @if $position == left {
-    @include translate3d(-100.5%,0,0);
+    @include translate3d(-100%,0,0);
     left: 0;
   }
   @if $position == right {
-    @include translate3d(100.5%,0,0);
+    @include translate3d(100%,0,0);
     right: 0;
   }
 }
@@ -139,7 +140,8 @@ $menu-slide: "transform 500ms ease" !default;
 // INNER WRAP
 // Main content area that moves to reveal the off-canvas nav
 @mixin inner-wrap {
-  @include kill-flicker;
+  // @include kill-flicker;
+  // removed for now till chrome fixes backface issue
   @include wrap-base;
   @include clearfix;
   -webkit-transition: -webkit-#{$menu-slide};
@@ -165,13 +167,13 @@ $menu-slide: "transform 500ms ease" !default;
   // z-index: 999;
 
   // Typography
-  h1,h2,h3,h4,h5,h6 {
+  h1, h2, h3, h4, h5, h6 {
     color: $tabbar-header-color;
     font-weight: $tabbar-header-weight;
     line-height: $tabbar-header-line-height;
     margin: $tabbar-header-margin;
   }
-  h1,h2,h3,h4 { font-size: $h5-font-size; }
+  h1, h2, h3, h4 { font-size: $h5-font-size; }
 }
 
 // SMALL SECTIONS
@@ -200,7 +202,8 @@ $menu-slide: "transform 500ms ease" !default;
   height: $tabbar-height;
   top: 0;
   @media #{$medium-up} {
-    &.left, &.right { text-align: left; }
+    &.left { text-align: left; }
+    &.right { text-align: right; }
   }
 
   // still need to make these non-presentational
@@ -246,6 +249,9 @@ $menu-slide: "transform 500ms ease" !default;
       transition: background 300ms ease;
       &:hover {
         background: $off-canvas-bg-hover;
+      }
+      &:active {
+        background: $off-canvas-bg-active;
       }
     }
   }
@@ -460,21 +466,21 @@ $menu-slide: "transform 500ms ease" !default;
   }
 }
 //Left double angle quote or Right double angle quote chars
-@mixin icon-double-arrows ($position){
+@mixin icon-double-arrows ($position) {
   @if $position == left {
     content: "\AB";
     @if $text-direction == rtl {
-      margin-left: 0.5rem;
+      margin-left: .5rem;
     } @else {
-      margin-right: 0.5rem;
+      margin-right: .5rem;
     }
   }
   @if $position == right {
     content: "\BB";
     @if $text-direction == rtl {
-      margin-right: 0.5rem;
+      margin-right: .5rem;
     } @else {
-      margin-left: 0.5rem;
+      margin-left: .5rem;
     }
   }
   display: inline;
@@ -483,14 +489,14 @@ $menu-slide: "transform 500ms ease" !default;
 @if $include-html-off-canvas-classes {
   .left-submenu {
     @include off-canvas-submenu($position: left);
-    &.move-right {
+    &.move-right, &.offcanvas-overlap-right, &.offcanvas-overlap {
       @include translate3d(0%,0,0);
     }
   }
 
   .right-submenu {
     @include off-canvas-submenu($position: right);
-    &.move-left {
+    &.move-left, &.offcanvas-overlap-left, &.offcanvas-overlap {
       @include translate3d(0%,0,0);
     }
   }
